@@ -1,0 +1,33 @@
+<div *ngIf="car">
+ 
+  <h2>{{car.brand | uppercase}} Details</h2>
+  <div><span>id: </span>{{car.id}}</div>
+  <div>
+    <label>brand:
+      <input [(ngModel)]="car.brand" placeholder="brand"/>
+    </label>
+  </div>
+  <div>
+    <label>registration:
+      <input [(ngModel)]="car.registration" placeholder="registration"/>
+    </label>
+  </div>
+  <div>
+    <label>country:
+      <input [(ngModel)]="car.country" placeholder="country"/>
+    </label>
+  </div>
+  <div>
+    <label>created_at:
+      <input [(ngModel)]="car.created_at" placeholder="created_at"/>
+    </label>
+  </div>
+  <div>
+    <label>brand:
+      <input [(ngModel)]="car.last_updated" placeholder="last_updated"/>
+    </label>
+  </div>
+  
+  <button (click)="save()">save</button>
+  <button (click)="goBack()">go back</button>
+</div>
