@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PipeTransform } from '@angular/core';
 import { Car } from '../car';
 import { CarService } from '../car.service';
+import { Observable, of } from 'rxjs';
 
 
 @Component({
@@ -8,12 +9,16 @@ import { CarService } from '../car.service';
   templateUrl: './cars.component.html',
   styleUrls: ['./cars.component.css']
 })
+
+
 export class CarsComponent implements OnInit {
 
   cars: Car[];
+  cars$: Observable<Car[]>;
 
-  constructor(private carService: CarService) { }
-
+  constructor(private carService: CarService) {
+  }
+  
   ngOnInit() {
     this.getCars();
   }
@@ -21,6 +26,7 @@ export class CarsComponent implements OnInit {
   getCars(): void {
     this.carService.getCars().subscribe(cars => this.cars = cars);
   }
+
 
 }
 
