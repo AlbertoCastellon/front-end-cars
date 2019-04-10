@@ -8,14 +8,14 @@ import { Injectable } from '@angular/core';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const cars: Car[] = [
-      {id: '1', brand: 'BMW', registration: new Date(),country: 'Germany', last_updated: new Date(), created_at: new Date()},
-      {id: '2', brand: 'Seat', registration: new Date(),country: 'Spain', last_updated: new Date(), created_at: new Date()},
-      {id: '3', brand: 'Audi', registration: new Date(),country: 'Germany', last_updated: new Date(), created_at: new Date()},
-      {id: '4', brand: 'Toyota', registration: new Date(),country: 'Japan', last_updated: new Date(), created_at: new Date()},
-      {id: '5', brand: 'BMW', registration: new Date(),country: 'Germany', last_updated: new Date(), created_at: new Date()},
-      {id: '6', brand: 'Seat', registration: new Date(),country: 'Spain', last_updated: new Date(), created_at: new Date()},
-      {id: '7', brand: 'Audi', registration: new Date(),country: 'Germany', last_updated: new Date(), created_at: new Date()},
-      {id: '8', brand: 'Toyota', registration: new Date(),country: 'Japan', last_updated: new Date(), created_at: new Date()}
+      {id: '1', brand: 'BMW', registration: new Date(),country: 'Germany'},
+      {id: '2', brand: 'Seat', registration: new Date(),country: 'Spain'},
+      {id: '3', brand: 'Audi', registration: new Date(),country: 'Germany'},
+      {id: '4', brand: 'Toyota', registration: new Date(),country: 'Japan'},
+      {id: '5', brand: 'BMW', registration: new Date(),country: 'Germany'},
+      {id: '6', brand: 'Seat', registration: new Date(),country: 'Spain'},
+      {id: '7', brand: 'Audi', registration: new Date(),country: 'Germany'},
+      {id: '8', brand: 'Toyota', registration: new Date(),country: 'Japan'}
   ];
     return {cars};
   }
