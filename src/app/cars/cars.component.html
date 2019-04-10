@@ -1,0 +1,44 @@
+
+<h2>My cars</h2>
+<div class="d-inline-flex">
+<form>
+  <div class="form-group form-inline">
+      Full text search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
+  </div>
+</form>
+
+<a routerLink="/new-car">
+  <td><button class="New Car ml-4" >New Car</button>
+  </a>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col" >#</th>
+      <th scope="col" >Brand</th>
+      <th scope="col" >Registration</th>
+      <th scope="col" >Country</th>
+      <th scope="col" ></th>
+      <th scope="col" ></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <tr *ngFor="let car of cars$ | async">
+      <th scope="row">{{ car.id | number}}</th>
+      
+        <td><ngb-highlight [result]="car.brand" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="car.registration | date:'long'" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="car.country" [term]="filter.value"></ngb-highlight></td>
+        <a routerLink="/cars/{{car.id}}">
+        <td><button class="edit">Edit</button>
+        </a>
+        <td><button class="delete" title="delete car"
+        (click)="delete(car)">Delete</button></td>
+      
+    </tr>
+
+  </tbody>
+</table>
