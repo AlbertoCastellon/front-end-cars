@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError} from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class CarService {
 
-  private carsUrl = 'api/cars';  // URL to web api
+  private carsUrl = '/cars/cars';  // URL to web api
 
   constructor(
     private http: HttpClient) { }
@@ -38,8 +38,25 @@ export class CarService {
 
   /** PUT: update the car on the server */
   updateCar (car: Car): Observable<any> {
-    return this.http.put(this.carsUrl, car, httpOptions).pipe(
+    return this.http.put(`${this.carsUrl}/${car.id}`, car, httpOptions).pipe(
       catchError(this.handleError<any>('updateCar'))
+    );
+  }
+
+  /** POST: add a new car to the server */
+  addCar (car: Car): Observable<Car> {
+    return this.http.post<Car>(this.carsUrl, car, httpOptions).pipe(
+      catchError(this.handleError<Car>('addCar'))
+    );
+  }
+
+  /** DELETE: delete the car from the server */
+  deleteCar (car: Car | number): Observable<Car> {
+    const id = typeof car === 'number' ? car : car.id;
+    const url = `${this.carsUrl}/${id}`;
+
+    return this.http.delete<Car>(url, httpOptions).pipe(
+      catchError(this.handleError<Car>('deleteCar'))
     );
   }
 

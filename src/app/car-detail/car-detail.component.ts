@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Car } from '../car';
 
 import { ActivatedRoute } from '@angular/router';
@@ -14,7 +14,8 @@ import { CarService }  from '../car.service';
 
 export class CarDetailComponent implements OnInit {
 
-  car: Car;
+  car: Car = new Car();
+  id : string;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,9 +28,12 @@ export class CarDetailComponent implements OnInit {
   }
 
   getCar(): void {
-    const id : string = this.route.snapshot.paramMap.get('id');
-    this.carService.getCar(id)
-      .subscribe(car => this.car = car);
+    this.id  = this.route.snapshot.paramMap.get('id');
+    if(this.id!=null)
+      this.carService.getCar(this.id)
+        .subscribe(car => this.car = car);
+    else
+      this.car.registration = new Date();
   }
 
   goBack(): void {
@@ -37,8 +41,20 @@ export class CarDetailComponent implements OnInit {
   }
 
   save(): void {
-    this.carService.updateCar(this.car)
-      .subscribe(() => this.goBack());
+
+    if(this.id!=null)
+      this.carService.updateCar(this.car)
+        .subscribe(() => this.goBack());
+    else
+      this.add();
+      
+  }
+
+  add(): void {
+
+    //if (!this.car) { return; }
+      this.carService.addCar(this.car)
+        .subscribe(() => this.goBack());
   }
 
 }
