@@ -1,10 +1,10 @@
 <div *ngIf="car">
  
-  <h2>{{car.brand | uppercase}} Details</h2>
+  <h2>{{car.brand.name | uppercase}} Details</h2>
   <div><span>id: </span>{{car.id}}</div>
   <div>
     <label>Brand:
-      <input [(ngModel)]="car.brand" placeholder="brand"/>
+      <input [(ngModel)]="car.brand.name" placeholder="brand"/>
     </label>
   </div>
   <div>
@@ -14,7 +14,7 @@
   </div>
   <div>
     <label>Country:
-      <input [(ngModel)]="car.country" placeholder="country"/>
+      <input [(ngModel)]="car.country.name" placeholder="country"/>
     </label>
   </div>
   

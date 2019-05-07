@@ -53,8 +53,8 @@ export class CarsComponent implements OnInit {
     
     return this.cars.filter(car => {
       const term = text.toLowerCase();
-      return car.brand.toLowerCase().includes(term)
-      || car.country.toLowerCase().includes(term) 
+      return car.brand.name.toLowerCase().includes(term)
+      || car.country.name.toLowerCase().includes(term) 
       || pipe.transform(car.registration, 'medium').toLowerCase().includes(term);
     });
   }

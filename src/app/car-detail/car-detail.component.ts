@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { CarService }  from '../car.service';
+import { Brand } from '../brand';
+import { Country } from '../country';
 
 @Component({
   selector: 'app-car-detail',
@@ -15,6 +17,7 @@ import { CarService }  from '../car.service';
 export class CarDetailComponent implements OnInit {
 
   car: Car = new Car();
+
   id : string;
 
   constructor(
@@ -32,8 +35,11 @@ export class CarDetailComponent implements OnInit {
     if(this.id!=null)
       this.carService.getCar(this.id)
         .subscribe(car => this.car = car);
-    else
+    else{
       this.car.registration = new Date();
+      this.car.brand = new Brand();
+      this.car.country = new Country();
+    }
   }
 
   goBack(): void {

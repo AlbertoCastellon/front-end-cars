@@ -29,9 +29,9 @@
     <tr *ngFor="let car of cars$ | async">
       <th scope="row">{{ car.id | number}}</th>
       
-        <td><ngb-highlight [result]="car.brand" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="car.brand.name" [term]="filter.value"></ngb-highlight></td>
         <td><ngb-highlight [result]="car.registration | date:'long'" [term]="filter.value"></ngb-highlight></td>
-        <td><ngb-highlight [result]="car.country" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="car.country.name" [term]="filter.value"></ngb-highlight></td>
         <a routerLink="/cars/{{car.id}}">
         <td><button class="edit">Edit</button>
         </a>
